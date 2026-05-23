@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/route/(.*)", "destination": "/api/index.js" },
+    { "source": "/(.*)", "destination": "/public/$1" }
+  ]
+}
