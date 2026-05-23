@@ -2,8 +2,8 @@ const express = require('express');
 const proxy = require('express-http-proxy');
 const app = express();
 
-app.use('/api', (req, res, next) => {
-    // In Vercel, the path comes after /route/
+// Handle the custom web routing proxy path
+app.use('/route', (req, res, next) => {
     const targetUrl = req.url.substring(1); 
     if (!targetUrl) return res.status(400).send('No target URL provided.');
 
@@ -20,4 +20,5 @@ app.use('/api', (req, res, next) => {
     })(req, res, next);
 });
 
+// CRITICAL: Export the app module for Vercel Serverless Function architecture
 module.exports = app;
